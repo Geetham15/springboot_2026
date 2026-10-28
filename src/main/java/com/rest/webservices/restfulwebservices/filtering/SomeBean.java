@@ -2,16 +2,19 @@ package com.rest.webservices.restfulwebservices.filtering;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 
 //@JsonIgnoreProperties("field1")
 //@JsonIgnoreProperties({"field1", "field2"})
 public class SomeBean {
 	
-	 
+	@JsonView(View.View1.class) 
 	public String field1;
 	
+	@JsonView(View.View2.class)
 	private String field2;
 	//@JsonIgnore // good to use it in the field level than class
+	@JsonView({View.View1.class,View.View2.class})
 	private String field3;
 	public SomeBean(String field1, String field2, String field3) {
 		super();

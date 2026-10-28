@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @RestController
 public class FilteringController {
 
@@ -17,6 +19,19 @@ public class FilteringController {
 	
 	@GetMapping("/filtering-list")
 	public List<SomeBean> filteringList()
+	{
+		return Arrays.asList(new SomeBean("vlue1","value2","value3"), new SomeBean("value4","value5","value6"));
+	}
+	@GetMapping("/filtering-with-view")
+	@JsonView(View.View1.class)
+	public SomeBean filteringWithView() //field1 and field3
+	{
+		return new SomeBean("value1","value2","value3");
+	}
+	
+	@GetMapping("/filtering-list-with-view") //field2 and field3
+	@JsonView(View.View2.class)
+	public List<SomeBean> filteringListWithView()
 	{
 		return Arrays.asList(new SomeBean("vlue1","value2","value3"), new SomeBean("value4","value5","value6"));
 	}
